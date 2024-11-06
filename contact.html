@@ -28,25 +28,25 @@
         
         <h2>Отправить личные данные</h2>
         <form id="contactForm">
-            <label>Фамилия: <input type="text" name="surname"></label><br>
-            <label>Имя: <input type="text" name="firstname"></label><br>
-            <label>Группа: <input type="text" name="group"></label><br>
-            <label>Мобильный телефон: <input type="tel" name="phone"></label><br>
-            <label>Электронная почта: <input type="email" name="email"></label><br>
-            <label>Дата отправки: <input type="date" name="send_date"></label><br>
+            <label>Фамилия: <input type="text" name="surname" value="Иванов"></label><br>
+            <label>Имя: <input type="text" name="firstname" value="Иван"></label><br>
+            <label>Группа: <input type="text" name="group" value="БИ-101"></label><br>
+            <label>Мобильный телефон: <input type="tel" name="phone" value="+71234567890"></label><br>
+            <label>Электронная почта: <input type="email" name="email" value="ivanov@example.com"></label><br>
+            <label>Дата отправки: <input type="date" name="send_date" value="2024-01-01"></label><br>
             <button type="submit">Отправить</button>
         </form>
 
         <h2>Оставить отзыв</h2>
         <form id="reviewForm">
-            <label>Ваш отзыв: <input type="text" name="review"></label><br>
-            <label>Оценка: <input type="number" name="rating" min="1" max="5"></label><br>
-            <label>Принять условия: <input type="checkbox" name="terms"></label><br>
+            <label>Ваш отзыв: <input type="text" name="review" value="Отличная игра!"></label><br>
+            <label>Оценка: <input type="number" name="rating" min="1" max="5" value="5"></label><br>
+            <label>Принять условия: <input type="checkbox" name="terms" checked></label><br>
             <label>Пол: 
-                <input type="radio" name="gender" value="male"> Мужской
+                <input type="radio" name="gender" value="male" checked> Мужской
                 <input type="radio" name="gender" value="female"> Женский
             </label><br>
-            <label>Пароль: <input type="password" name="password"></label><br>
+            <label>Пароль: <input type="password" name="password" value="12345"></label><br>
             <input type="hidden" name="user_id" value="12345">
             <button type="submit">Отправить</button>
         </form>
@@ -99,5 +99,7 @@
     </script>
 </body>
 </html>
+
+
 
 
