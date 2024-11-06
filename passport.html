@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Паспорт</title>
+    <!-- Навигационная панель -->
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="about.html">Об игре</a></li>
+            <li><a href="characters.html">Персонажи</a></li>
+            <li><a href="locations.html">Локации</a></li>
+            <li><a href="contact.html" class="active">Контакты</a></li>
+            <li><a href="https://store.steampowered.com/app/292030/Vedmak_3_Dikaya_Oxota/" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Steam_icon_logo.svg/1024px-Steam_icon_logo.svg.png" width=40 height=40>
+            </a></li>
+            <li><a href="passport.html">Паспорт</a></li>
+            <li><a href="task.html">Задача</a></li>       
+        </ul>
+    </nav>
+    <style>
+        /* Основные стили для выравнивания элементов */
+        #main_fon {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/736x/64/b2/a2/64b2a25a3e9178140fccb0f4fa0d4511.jpg'); /* Путь к фону паспорта */
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        .input-field {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.5); /* Полупрозрачный фон для текста */
+            border: 1px solid #ccc;
+            color: #000;
+            font-weight: bold;
+        }
+        .button {
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .section-title {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 id="passport">Паспорт</h1>
+    <div id="main_fon"> 
+        <h5 id="pass_title" class="poiret-one-regular">РОССИЙСКАЯ ФЕДЕРАЦИЯ</h5>
+        
+        <!-- Поля данных паспорта -->
+        <div id="page_top">
+            <input id="vidanstr" class="input-field" type="text" value="ОТДЕЛОМ УФМС">
+            <input id="vidanstr2" class="input-field" type="text" value="ПО Г. МОСКВЕ">
+            <input id="vidanstrdata" class="input-field" type="text" value="05.03.2024">
+            <input id="vidanstrcode" class="input-field" type="text" value="730-876">
+        </div>
+        <!-- Поля для ввода данных владельца -->
+        <div id="page_bottom">
+            <input id="hfamilia" class="input-field" type="text" value="БЕЛОБРОВ">
+            <input id="hname" class="input-field" type="text" value="ВЛАДИСЛАВ">
+            <input id="hfname" class="input-field" type="text" value="ВИКТОРОВИЧ">
+            <input id="hpol" class="input-field" type="text" value="МУЖ.">
+            <input id="hborn" class="input-field" type="text" value="03.03.2005">
+            <input id="hpborn1" class="input-field" type="text" value="ГОР. МОСКВА">
+            <input id="hpborn2" class="input-field" type="text" value="МОСКОВСКОЙ ОБЛ.">
+        </div> 
+
+        <button type="button" class="button" onclick="transliterateFields()">Перевести</button>
+    </div>
+
+    <script>
+        // Словарь для транслитерации с кириллицы на латиницу
+        const kirillicaToLatin = {
+            'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'G', 'Д': 'D', 'Е': 'E', 'Ё': 'E', 'Ж': 'Zh',
+            'З': 'Z', 'И': 'I', 'Й': 'Y', 'К': 'K', 'Л': 'L', 'М': 'M', 'Н': 'N', 'О': 'O',
+            'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U', 'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts',
+            'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Sch', 'Ы': 'Y', 'Э': 'E', 'Ю': 'Yu', 'Я': 'Ya',
+            'а': 'a', 'б': 'b', 'в': 'v', 'г': 'g', 'д': 'd', 'е': 'e', 'ё': 'e', 'ж': 'zh',
+            'з': 'z', 'и': 'i', 'й': 'y', 'к': 'k', 'л': 'l', 'м': 'm', 'н': 'n', 'о': 'o',
+            'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u', 'ф': 'f', 'х': 'kh', 'ц': 'ts',
+            'ч': 'ch', 'ш': 'sh', 'щ': 'sch', 'ы': 'y', 'э': 'e', 'ю': 'yu', 'я': 'ya'
+        };
+
+        // Словарь для транслитерации с латиницы на кириллицу
+        const latinToKirillica = {
+            'A': 'А', 'B': 'Б', 'V': 'В', 'G': 'Г', 'D': 'Д', 'E': 'Е', 'Zh': 'Ж', 'Z': 'З',
+            'I': 'И', 'Y': 'Й', 'K': 'К', 'L': 'Л', 'M': 'М', 'N': 'Н', 'O': 'О', 'P': 'П',
+            'R': 'Р', 'S': 'С', 'T': 'Т', 'U': 'У', 'F': 'Ф', 'Kh': 'Х', 'Ts': 'Ц', 'Ch': 'Ч',
+            'Sh': 'Ш', 'Sch': 'Щ', 'Y': 'Ы', 'Yu': 'Ю', 'Ya': 'Я', 'a': 'а', 'b': 'б', 'v': 'в',
+            'g': 'г', 'd': 'д', 'e': 'е', 'zh': 'ж', 'z': 'з', 'i': 'и', 'y': 'й', 'k': 'к',
+            'l': 'л', 'm': 'м', 'n': 'н', 'o': 'о', 'p': 'п', 'r': 'р', 's': 'с', 't': 'т',
+            'u': 'у', 'f': 'ф', 'kh': 'х', 'ts': 'ц', 'ch': 'ч', 'sh': 'ш', 'sch': 'щ', 'y': 'ы',
+            'e': 'е', 'yu': 'ю', 'ya': 'я'
+        };
+
+        // Функция транслитерации с кириллицы на латиницу
+        function transliterateCyrillicToLatin(text) {
+            return text.split('').map(char => kirillicaToLatin[char] || char).join('');
+        }
+
+        // Функция транслитерации с латиницы на кириллицу
+        function transliterateLatinToCyrillic(text) {
+            const regex = /[A-Za-z]+/g;
+            return text.replace(regex, function(match) {
+                return latinToKirillica[match] || match;
+            });
+        }
+
+        // Функция для переключения транслитерации в обе стороны
+        function transliterateFields() {
+            const fields = ['vidanstr', 'vidanstr2', 'vidanstrdata', 'vidanstrcode', 'hfamilia', 'hname', 'hfname', 'hpol', 'hpborn1', 'hpborn2'];
+            fields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                const value = field.value;
+
+                // Определяем, какая транслитерация необходима (с кириллицы на латиницу или наоборот)
+                if (/^[A-Za-z]+$/.test(value)) {
+                    field.value = transliterateLatinToCyrillic(value);  // Латиница в кириллицу
+                } else {
+                    field.value = transliterateCyrillicToLatin(value);  // Кириллица в латиницу
+                }
+            });
+        }
+    </script>
+
+</body>
+<img src="photo_2024-11-06_03-49-53.jpg">
+
+</html>
+       
+
+
+
